@@ -5,9 +5,22 @@ class Graph {
         this.$canvas = document.getElementById('canvasImg');
         this.$context = this.$canvas.getContext("2d");
 
+        this.salesData = [{
+            category: "Basketballs",
+            sales: 150
+         }, {
+            category: "Baseballs",
+            sales: 125
+         }, {
+            category: "Footballs",
+            sales: 300
+         }];
+
         this.drawAxes = this.drawAxes.bind(this);
 
-        this.drawAxes();
+        this.drawAxes(80, 400, 500);
+        this.createLabels();
+        this.drawBars();
     }
 
     drawAxes(baseX, baseY, chartWidth) {
@@ -31,8 +44,30 @@ class Graph {
         this.$context.moveTo(rightX, baseY);
         this.$context.lineTo(rightX - 5, baseY - 5);
         // Define style and stroke lines.
-        this.$context.strokeStyle = "red";
+        this.$context.strokeStyle = "black";
         this.$context.stroke();
+     }
+
+     createLabels() {
+        let height, widthOffset;
+        height = this.$context.canvas.height;
+        widthOffset = this.$context.canvas.width/2;
+        this.$context.font = "bold 18px sans-serif";
+        this.$context.fillText("Product", widthOffset, height - 20);
+     }
+
+     drawBars() {
+        let i, length, category, sales;
+        let barWidth = 80;
+        let xPos = 150;
+        let baseY = 400;       
+        for (i = 0, length = this.salesData.length; i < length; i++) {
+           category = this.salesData[i].category;
+           sales = this.salesData[i].sales;
+           this.$context.fillRect(xPos, baseY - sales-1, barWidth, sales);
+           this.$context.fillText(category, xPos, baseY + 13, sales);
+           xPos += 125;
+        }
      }
 }
 new Graph();
