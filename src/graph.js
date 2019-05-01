@@ -6,19 +6,19 @@ class Graph {
         this.$context = this.$canvas.getContext("2d");
 
         this.salesData = [{
-            category: "Basketballs",
+            category: "Customer1",
             sales: 150
          }, {
-            category: "Baseballs",
+            category: "Customer2",
             sales: 125
          }, {
-            category: "Footballs",
+            category: "Customer3",
             sales: 300
          }];
 
         this.drawAxes = this.drawAxes.bind(this);
 
-        this.drawAxes(80, 400, 500);
+        this.drawAxes(120, 400, 500);
         this.createLabels();
         this.drawBars();
     }
@@ -53,13 +53,15 @@ class Graph {
         height = this.$context.canvas.height;
         widthOffset = this.$context.canvas.width/2;
         this.$context.font = "bold 18px sans-serif";
-        this.$context.fillText("Product", widthOffset, height - 20);
+        this.$context.fillText("Product", widthOffset, height - 10);
+        this.$context.fillText("Units Sold", 0, 100);
+        this.$context.fillText("(In Hundreds)", 0, 120);
      }
 
      drawBars() {
         let i, length, category, sales;
         let barWidth = 80;
-        let xPos = 150;
+        let xPos = 180;
         let baseY = 400;       
         for (i = 0, length = this.salesData.length; i < length; i++) {
            category = this.salesData[i].category;
