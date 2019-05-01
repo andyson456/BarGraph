@@ -4,6 +4,7 @@ class Graph {
     constructor() {
         this.$canvas = document.getElementById('canvasImg');
         this.$context = this.$canvas.getContext("2d");
+        this.$productText = document.getElementById('productText');
 
         this.salesData = [{
             category: "Customer1",
@@ -63,7 +64,8 @@ class Graph {
         let barWidth = 80;
         let xPos = 180;
         let baseY = 400; 
-        let colors = ["orange", "#0092bf", "rgba(240, 101, 41, 0.90)"];      
+        let colors = ["orange", "#0092bf", "rgba(240, 101, 41, 0.90)"];  
+        let categoryColor = "black";    
         for (i = 0, length = this.salesData.length; i < length; i++) {
            category = this.salesData[i].category;
            sales = this.salesData[i].sales;
