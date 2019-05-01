@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 module.exports = {
+	mode: 'production',
 	context: __dirname,
-	entry: {	general: './src/index.js',
+	entry: {	
+		general: './src/general.js',
 		graph: './src/graph.js',
 	},
 	output: {path: __dirname + "/dist",
