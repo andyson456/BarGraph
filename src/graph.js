@@ -62,14 +62,24 @@ class Graph {
         let i, length, category, sales;
         let barWidth = 80;
         let xPos = 180;
-        let baseY = 400;       
+        let baseY = 400; 
+        let colors = ["orange", "#0092bf", "rgba(240, 101, 41, 0.90)"];      
         for (i = 0, length = this.salesData.length; i < length; i++) {
            category = this.salesData[i].category;
            sales = this.salesData[i].sales;
+           this.$context.fillStyle = this.createGradient(xPos, baseY - sales-1, barWidth, colors[i % length]);
            this.$context.fillRect(xPos, baseY - sales-1, barWidth, sales);
            this.$context.fillText(category, xPos, baseY + 13, sales);
            xPos += 125;
         }
+     }
+
+     createGradient(x, y, width, color) {
+        let gradient;
+        gradient = this.$context.createLinearGradient(x, y, x + width, y);
+        gradient.addColorStop(0, color);
+        gradient.addColorStop(1, "#efe3e3");
+        return gradient;
      }
 }
 new Graph();
