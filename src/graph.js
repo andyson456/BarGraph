@@ -5,10 +5,17 @@ class Graph {
         this.$canvas = document.getElementById('canvasImg');
         this.$context = this.$canvas.getContext("2d");
         this.$productText = document.getElementById('productText');
+        this.$sales1 = document.getElementById('sales1');
+        this.$sales2 = document.getElementById('sales2');
+        this.$sales3 = document.getElementById('sales3');
+        this.$customer1 = document.getElementById('customer1');
+        this.$customer2 = document.getElementById('customer2');
+        this.$customer3 = document.getElementById('customer3');
+        this.$generateButton = document.getElementById('generateButton');
 
         this.salesData = [{
-            category: "Customer1",
-            sales: 150
+            category: this.$customer1.value,
+            sales: this.$sales1.value
          }, {
             category: "Customer2",
             sales: 125
@@ -18,6 +25,10 @@ class Graph {
          }];
 
         this.drawAxes = this.drawAxes.bind(this);
+        this.drawBars = this.drawBars.bind(this);
+        this.createLabels = this.createLabels.bind(this);
+
+        this.$generateButton.onclick = this.drawBars;
 
         this.drawAxes(120, 400, 500);
         this.createLabels();
